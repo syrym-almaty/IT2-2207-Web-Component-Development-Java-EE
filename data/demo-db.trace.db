@@ -1,0 +1,21 @@
+2024-09-26 13:57:32.999048+06:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM STUDENT ID [*]ID STUDENT ID"; SQL statement:
+SELECT * FROM STUDENT ID ID STUDENT ID [42000-224]
+2024-09-26 13:59:39.069717+06:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'34620' (STUDENT: ""ID"" UUID NOT NULL)"; SQL statement:
+INSERT INTO STUDENT
+VALUES  ('34620', '34620@iitu.edu.kz', 'Nariman') [22018-224]
+2024-09-26 13:59:56.982122+06:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "34620 (STUDENT: ""ID"" UUID NOT NULL)"; SQL statement:
+INSERT INTO STUDENT
+VALUES  (34620, '34620@iitu.edu.kz', 'Nariman') [22018-224]
+2024-09-26 14:00:13.281484+06:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "1 (STUDENT: ""ID"" UUID NOT NULL)"; SQL statement:
+INSERT INTO STUDENT
+VALUES  (1, '34620@iitu.edu.kz', 'Nariman') [22018-224]
+2024-09-26 14:01:10.622744+06:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "2 (STUDENT: ""ID"" UUID NOT NULL)"; SQL statement:
+INSERT INTO STUDENT(ID, EMAIL, NAME)
+VALUES  (2, '34620@iitu.edu.kz', 'Nariman') [22018-224]
+2024-09-26 14:05:02.293650+06:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE TEACHER{\000d\000aID UUID PRIMARY KEY,\000d\000aEMAIL VARCHAR(255) NOT NULL,\000d\000aNAME VARCHAR(100) NOT NULL\000d\000a[*])" [42000-224]
