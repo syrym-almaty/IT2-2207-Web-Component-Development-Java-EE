@@ -1,0 +1,3 @@
+2024-09-26 18:02:03.169776+05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]SELECCT * FROM BOOK"; expected "SAVEPOINT, SCRIPT, SHUTDOWN"; SQL statement:
+SELECCT * FROM BOOK [42001-224]
