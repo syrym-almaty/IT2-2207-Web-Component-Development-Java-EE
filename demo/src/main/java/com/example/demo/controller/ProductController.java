@@ -42,13 +42,17 @@ public class ProductController {
 
     @Operation(summary = "Get product by ID" , description = "Finds a product by its ID")
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable UUID uuid){
-        return productService.findById(uuid);
+    public Product getProductById(
+            @Parameter(description = "UUID of the Product to find", required = true)
+            @PathVariable UUID id){
+        return productService.findById(id);
     }
 
     @Operation(summary = "Delete Product by ID", description = "Deletes product by its ID")
     @DeleteMapping("/{id}")
-    public void deleteProductById(@PathVariable UUID uuid){
-        productService.deleteProductById(uuid);
+    public void deleteProductById(
+            @Parameter(description = "UUID of the Product to delete", required = true)
+            @PathVariable UUID id){
+        productService.deleteProductById(id);
     }
 }
