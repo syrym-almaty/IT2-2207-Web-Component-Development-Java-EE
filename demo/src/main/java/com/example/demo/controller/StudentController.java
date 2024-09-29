@@ -18,6 +18,8 @@ import java.util.UUID;
 @Tag(name = "Student Controller", description = "CRUD operations for Students")
 public class StudentController {
 
+    Strin;
+
     @Autowired
     private StudentService studentService;
 
