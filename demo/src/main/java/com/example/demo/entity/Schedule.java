@@ -1,17 +1,23 @@
 package com.example.demo.entity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.UUID;
 
 @Entity
 public class Schedule {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(columnDefinition = "uuid")
+    private UUID id;
+
     private String eventName;
     private LocalDate eventDate;
     private LocalTime startTime;
@@ -26,9 +32,11 @@ public class Schedule {
         this.endTime = endTime;
     }
 
-    public Long getId() {return id;}
+    public UUID getId() {
+        return id;
+    }
 
-    public void setId(Long id) {this.id = id;}
+    public void setId(UUID id) {this.id = id;}
 
     public String getEventName() {return eventName;}
 

@@ -1,72 +1,66 @@
 package com.example.demo.controller;
 
-
-
 import com.example.demo.entity.Schedule;
-import com.example.demo.repository.ScheduleRepository;
+import com.example.demo.service.ScheduleService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/schedules")
+@Tag(name = "Schedule Controller", description = "CRUD operations for Schedules")
 public class ScheduleController {
 
     @Autowired
-    private ScheduleRepository scheduleRepository;
+    private ScheduleService scheduleService;
 
-    // Get all schedules
+    @Operation(summary = "Get All Schedules", description = "Retrieve a list of all schedules")
+    @ApiResponse(responseCode = "200", description = "Successfully retrieved list")
     @GetMapping
     public List<Schedule> getAllSchedules() {
-        return scheduleRepository.findAll();
+        return scheduleService.getAllSchedules();
     }
 
-    // Get schedule by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<Schedule> getScheduleById(@PathVariable Long id) {
-        Optional<Schedule> schedule = scheduleRepository.findById(id);
-        if (schedule.isPresent()) {
-            return ResponseEntity.ok(schedule.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    // Create new schedule
+    @Operation(summary = "Create Schedule", description = "Create a new schedule")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Schedule created successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid input")
+    })
     @PostMapping
-    public Schedule createSchedule(@RequestBody Schedule schedule) {
-        return scheduleRepository.save(schedule);
+    public Schedule createSchedule(
+            @Parameter(description = "Schedule object to be created", required = true)
+            @RequestBody Schedule schedule) {
+        return scheduleService.createSchedule(schedule);
     }
 
-    // Update an existing schedule
-    @PutMapping("/{id}")
-    public ResponseEntity<Schedule> updateSchedule(@PathVariable Long id, @RequestBody Schedule scheduleDetails) {
-        Optional<Schedule> schedule = scheduleRepository.findById(id);
-        if (schedule.isPresent()) {
-            Schedule existingSchedule = schedule.get();
-            existingSchedule.setEventName(scheduleDetails.getEventName());
-            existingSchedule.setEventDate(scheduleDetails.getEventDate());
-            existingSchedule.setStartTime(scheduleDetails.getStartTime());
-            existingSchedule.setEndTime(scheduleDetails.getEndTime());
-            return ResponseEntity.ok(scheduleRepository.save(existingSchedule));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @Operation(summary = "Get Schedule by ID", description = "Retrieve a schedule by its ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved schedule"),
+            @ApiResponse(responseCode = "404", description = "Schedule not found")
+    })
+    @GetMapping("/{id}")
+    public Schedule getScheduleById(
+            @Parameter(description = "UUID of the schedule to retrieve", required = true)
+            @PathVariable UUID id) {
+        return scheduleService.getScheduleById(id);
     }
 
-    // Delete a schedule
+    @Operation(summary = "Delete Schedule", description = "Delete a schedule by its ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Schedule deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "Schedule not found")
+    })
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteSchedule(@PathVariable Long id) {
-        Optional<Schedule> schedule = scheduleRepository.findById(id);
-        if (schedule.isPresent()) {
-            scheduleRepository.delete(schedule.get());
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public void deleteSchedule(
+            @Parameter(description = "UUID of the schedule to delete", required = true)
+            @PathVariable UUID id) {
+        scheduleService.deleteScheduleById(id);
     }
 }
-
