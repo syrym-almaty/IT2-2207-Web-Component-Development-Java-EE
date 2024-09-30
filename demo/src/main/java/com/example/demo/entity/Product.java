@@ -28,7 +28,7 @@ public class Product {
     public Product() {
     }
 
-    public int prototype(){return 0;}
+    public int test(){return 0;}
 
     public Product(String name, String description, double price) {
         this.name = name;
