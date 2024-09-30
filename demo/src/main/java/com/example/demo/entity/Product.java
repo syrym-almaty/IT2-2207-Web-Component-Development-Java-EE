@@ -28,6 +28,8 @@ public class Product {
     public Product() {
     }
 
+    public int prototype(){return 0;}
+
     public Product(String name, String description, double price) {
         this.name = name;
         this.description = description;
@@ -66,3 +68,5 @@ public class Product {
         this.price = price;
     }
 }
+
+
