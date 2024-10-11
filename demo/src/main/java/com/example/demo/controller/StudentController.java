@@ -39,6 +39,20 @@ public class StudentController {
             @RequestBody Student student) {
         return studentService.createStudent(student);
     }
+    @Operation(summary = "Обновить студента", description = "Обновить информацию существующего студента")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Студент успешно обновлен"),
+            @ApiResponse(responseCode = "400", description = "Неверные данные"),
+            @ApiResponse(responseCode = "404", description = "Студент не найден")
+    })
+    @PutMapping("/{id}")
+    public Student updateStudent(
+            @Parameter(description = "UUID студента, которого нужно обновить", required = true)
+            @PathVariable UUID id,
+            @Parameter(description = "Обновленные данные студента", required = true)
+            @RequestBody Student updatedStudent) {
+        return studentService.updateStudent(id, updatedStudent);
+    }
 
     @Operation(summary = "Get Student by ID", description = "Retrieve a student by their ID")
     @ApiResponses(value = {
@@ -63,4 +77,6 @@ public class StudentController {
             @PathVariable UUID id) {
         studentService.deleteStudent(id);
     }
+
+
 }
