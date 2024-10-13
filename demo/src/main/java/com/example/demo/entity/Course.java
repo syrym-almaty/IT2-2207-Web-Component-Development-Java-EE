@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.example.demo.validator.ValidCourseCode;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -23,6 +24,7 @@ public class Course {
 
     @NotBlank(message = "Course code is required")
     @Column(unique = true)
+    @ValidCourseCode
     private String code;
 
     @ManyToMany(mappedBy = "courses")
