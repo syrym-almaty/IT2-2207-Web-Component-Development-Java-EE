@@ -19,8 +19,8 @@ public class User implements UserDetails {
     private String password;
     private boolean enabled;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+//    @ManyToMany(fetch = FetchType.EAGER)
+////    private Set<Role> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -18,10 +18,12 @@ public class Grade {
     private GradeId id = new GradeId();
 
     @ManyToOne
+    @JoinColumn(name = "student_id")
     @MapsId("studentId")
     private Student student;
 
     @ManyToOne
+    @JoinColumn(name = "course_id")
     @MapsId("courseId")
     private Course course;
 
