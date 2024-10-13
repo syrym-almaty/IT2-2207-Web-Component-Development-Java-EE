@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.example.demo.service.BookService;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -13,7 +14,6 @@ public class Book {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
-
     private String title;
     private String author;
     private String isbn;

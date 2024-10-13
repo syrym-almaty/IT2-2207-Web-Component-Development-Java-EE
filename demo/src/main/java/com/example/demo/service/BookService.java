@@ -12,7 +12,6 @@ import java.util.UUID;
 public class BookService {
     @Autowired
     private BookRepository bookRepository;
-
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
     }
