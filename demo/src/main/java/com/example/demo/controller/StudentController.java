@@ -8,13 +8,16 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/students")
+@RequestMapping("/api/student")
+@PreAuthorize("hasRole('STUDENT')")
+
 @Tag(name = "Student Controller", description = "CRUD operations for Students")
 public class StudentController {
 

@@ -1,9 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.HashSet;
@@ -29,6 +27,7 @@ public class Student {
 
     private String name;
     private String email;
+    private Double gpa;
 
     @ManyToMany
     @JoinTable(
@@ -38,8 +37,8 @@ public class Student {
     )
     private Set<Course> courses = new HashSet<>();
 
-    // GPA field
-    private Double gpa;
+    @OneToMany
+    private Set<Grade> grades = new HashSet<>();
 
 
 }
