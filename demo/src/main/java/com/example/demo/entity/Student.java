@@ -28,12 +28,7 @@ public class Student {
     )
     private Set<Course> courses = new HashSet<>();
 
-    @OneToMany
-    @JoinTable(
-            name = "grades",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "score")
-    )
+    @OneToMany(mappedBy = "student")
     private Set<Grade> grades = new HashSet<>();
     @NotBlank
     private String name;
