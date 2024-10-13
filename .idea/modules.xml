@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/IT2-2207-Web-Component-Development-Java-EE.iml" filepath="$PROJECT_DIR$/.idea/IT2-2207-Web-Component-Development-Java-EE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/dimashgit.iml" filepath="$PROJECT_DIR$/.idea/dimashgit.iml" />
     </modules>
   </component>
 </project>
