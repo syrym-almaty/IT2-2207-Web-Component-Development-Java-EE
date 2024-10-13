@@ -52,7 +52,7 @@ public class StudentController {
             @PathVariable Long id) {
         return studentService.getStudentById(id);
     }
-
+//labus
     @Operation(summary = "Delete Student", description = "Delete a student by their ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Student deleted successfully"),
