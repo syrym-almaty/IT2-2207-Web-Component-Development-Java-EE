@@ -1,31 +1,34 @@
 package com.example.demo.Entity;
 
+import com.example.demo.Validators.ValidCourseCode;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import lombok.*;
+
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "courses")
+@Table( name = "courses")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
+    @NotBlank(message = "Course name is required")
     private String name;
 
     @NotBlank(message = "Course code is required")
     @Column(unique = true)
+    @ValidCourseCode
     private String code;
 
     @ManyToMany(mappedBy = "courses")
     private Set<Student> students = new HashSet<>();
+
+    private int credits;
 }

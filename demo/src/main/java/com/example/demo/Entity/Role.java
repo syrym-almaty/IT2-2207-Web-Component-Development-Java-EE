@@ -1,6 +1,5 @@
 package com.example.demo.Entity;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,16 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@Entity
-public class User implements UserDetails {
+public class Role implements UserDetails{
     @Id
-    private String username;
-    private String password;
-    private boolean enabled;
-
-//    @ManyToMany(fetch = FetchType.EAGER)
-////    private Set<Role> roles;
-
+    private String name;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
@@ -32,5 +24,4 @@ public class User implements UserDetails {
     public String getUsername() {
         return "";
     }
-
 }

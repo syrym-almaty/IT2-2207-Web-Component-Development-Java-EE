@@ -4,16 +4,13 @@ import com.example.demo.Entity.Grade;
 import com.example.demo.Entity.Student;
 import com.example.demo.Exception.ResourceNotFoundException;
 import com.example.demo.Repository.CourseRepository;
-import com.example.demo.Repository.StudentRepository;
 import com.example.demo.Repository.GradeRepository;
+import com.example.demo.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import java.util.UUID;
 
 @Service
 public class StudentService {

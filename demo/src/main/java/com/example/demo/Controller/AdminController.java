@@ -8,7 +8,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/admin")
 @PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
-    // Эндпоинты только для администраторов
 }
-
-

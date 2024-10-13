@@ -1,12 +1,12 @@
 package com.example.demo.Repository;
 
-import com.example.demo.Entity.Course;
+import com.example.demo.Entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface CourseRepository extends JpaRepository<Course, Long> {
-    Optional<Course> findByCode(String code);
+public interface StudentRepository extends JpaRepository<Student, Long> {
+    Optional<Student> findById(Long studentId);
 }
