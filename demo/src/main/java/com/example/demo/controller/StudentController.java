@@ -48,7 +48,7 @@ public class StudentController {
     @GetMapping("/{id}")
     public Student getStudentById(
             @Parameter(description = "UUID of the student to retrieve", required = true)
-            @PathVariable UUID id) {
+            @PathVariable Long id) {
         return studentService.getStudentById(id);
     }
 
@@ -60,7 +60,7 @@ public class StudentController {
     @DeleteMapping("/{id}")
     public void deleteStudent(
             @Parameter(description = "UUID of the student to delete", required = true)
-            @PathVariable UUID id) {
+            @PathVariable Long id) {
         studentService.deleteStudent(id);
     }
 }
