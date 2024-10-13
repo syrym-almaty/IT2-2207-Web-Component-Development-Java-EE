@@ -17,7 +17,6 @@ public class Book {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-
     private int pages;
 
     @NotBlank(message = "Title is mandatory")
