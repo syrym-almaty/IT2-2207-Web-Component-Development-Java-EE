@@ -39,6 +39,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.DemoApplication.executor": "Run",
+    "JUnit.BookControllerTest.executor": "Run",
+    "JUnit.DemoApplicationTests.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "C:/Users/dauib/IT2-2207-Web-Component-Development-Java-EE",
     "node.js.detected.package.eslint": "true",
