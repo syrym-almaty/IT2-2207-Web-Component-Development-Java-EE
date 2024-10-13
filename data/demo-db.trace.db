@@ -1,0 +1,6 @@
+2024-10-14 00:01:36.104083+05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table [*]user (username varchar(255) not null, enabled boolean not null, password varchar(255), primary key (username))"; expected "identifier"; SQL statement:
+create table user (username varchar(255) not null, enabled boolean not null, password varchar(255), primary key (username)) [42001-224]
+2024-10-14 00:01:36.124084+05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "alter table if exists user_roles add constraint FK1misndtpfm9hx3ttvixdus8d1 foreign key (user_username) references [*]user"; expected "identifier"; SQL statement:
+alter table if exists user_roles add constraint FK1misndtpfm9hx3ttvixdus8d1 foreign key (user_username) references user [42001-224]

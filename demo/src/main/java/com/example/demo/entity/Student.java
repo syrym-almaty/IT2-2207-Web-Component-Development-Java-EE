@@ -1,10 +1,10 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -22,6 +22,17 @@ public class Student {
     private String name;
     private String email;
 
+
+    @ManyToMany
+    @JoinTable(
+            name = "enrollments",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private Set<Course> courses = new HashSet<>();
+
+    private Double gpa;
+
     // Constructors
     public Student() {}
 
@@ -29,6 +40,7 @@ public class Student {
         this.name = name;
         this.email = email;
     }
+
 
     // Getters and Setters
     public UUID getId() {
@@ -53,5 +65,14 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
     }
 }
