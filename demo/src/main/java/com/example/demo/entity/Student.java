@@ -2,32 +2,23 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
+
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
+
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "students")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Student {
-
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-        name = "UUID",
-        strategy = "org.hibernate.id.UUIDGenerator"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "uuid")
-    private UUID id;
-
-    private String name;
-    private String email;
-    private Double gpa;
+    private Long id;
 
     @ManyToMany
     @JoinTable(
@@ -39,6 +30,17 @@ public class Student {
 
     @OneToMany
     private Set<Grade> grades = new HashSet<>();
+    @NotBlank
+    private String name;
+    @NotBlank
+    private String email;
+    private Double gpa;
+
+
+    public Student(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 
 
 }
