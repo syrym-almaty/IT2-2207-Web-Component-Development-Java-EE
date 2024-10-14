@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/demo-0.0.1-SNAPSHOT.jar /app/demo.jar
 
 # Expose the application port
-EXPOSE 8080
+EXPOSE 8081
 
 # Define the command to run the Spring Boot application
 ENTRYPOINT ["java", "-jar", "/app/demo.jar"]
