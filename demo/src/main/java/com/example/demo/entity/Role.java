@@ -1,14 +1,28 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-/*
-@Entity
-public class Role implements GrantedAuthority {
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
+
+public class Role implements UserDetails{
     @Id
     private String name;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
+    }
 
-    // Implement methods from GrantedAuthority interface
-}*/
+    @Override
+    public String getPassword() {
+        return "";
+    }
+
+    @Override
+    public String getUsername() {
+        return "";
+    }
+}
