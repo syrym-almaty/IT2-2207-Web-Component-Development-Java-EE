@@ -1,6 +1,11 @@
 package com.example.demo.service;
+import com.example.demo.entity.Course;
+import com.example.demo.entity.Grade;
 import com.example.demo.entity.Student;
+import com.example.demo.repository.GradeRepository;
 import com.example.demo.repository.StudentRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.exception.ResourceNotFoundException;
@@ -39,5 +44,39 @@ public class StudentService {
                 })
                 .orElseThrow(() -> new ResourceNotFoundException("Student not found with id " + id));
     }
+    @Autowired
+    private GradeRepository gradeRepository;
 
+    // Method to calculate GPA for a student
+    public double calculateGPA(UUID studentId) {
+        // Get all grades for the student from the Grade repository
+        List<Grade> grades = gradeRepository.findByStudentId(studentId);
+
+        // If there are no grades, return 0.0
+        if (grades == null || grades.isEmpty()) {
+            return 0.0;
+        }
+
+        // Calculate the total score from all grades
+        double totalScore = grades.stream()
+                .mapToDouble(Grade::getScore)
+                .sum();
+
+        // Return the average score as GPA
+        return totalScore / grades.size();
+    }
+
+    // Method to update the student's GPA in the database
+    @Transactional
+    public void updateStudentGPA(UUID studentId) {
+        double gpa = calculateGPA(studentId);
+
+        // Fetch student from the repository and update the GPA
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new EntityNotFoundException("Student not found"));
+
+        student.setGpa(gpa);
+
+        studentRepository.save(student);
+    }
 }
