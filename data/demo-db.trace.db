@@ -1,0 +1,8 @@
+2024-10-14 10:19:18.191092+05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "create table [*]user (username varchar(255) not null, enabled boolean not null, password varchar(255), primary key (username))"; ожидалось "identifier"
+Syntax error in SQL statement "create table [*]user (username varchar(255) not null, enabled boolean not null, password varchar(255), primary key (username))"; expected "identifier"; SQL statement:
+create table user (username varchar(255) not null, enabled boolean not null, password varchar(255), primary key (username)) [42001-224]
+2024-10-14 10:19:59.893520+05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "create table [*]user (username varchar(255) not null, enabled boolean not null, password varchar(255), primary key (username))"; ожидалось "identifier"
+Syntax error in SQL statement "create table [*]user (username varchar(255) not null, enabled boolean not null, password varchar(255), primary key (username))"; expected "identifier"; SQL statement:
+create table user (username varchar(255) not null, enabled boolean not null, password varchar(255), primary key (username)) [42001-224]
