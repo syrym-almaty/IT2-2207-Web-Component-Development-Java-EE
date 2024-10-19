@@ -21,7 +21,6 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-
     @Operation(summary = "Get All Students", description = "Retrieve a list of all students")
     @ApiResponse(responseCode = "200", description = "Successfully retrieved list")
     @GetMapping
@@ -53,17 +52,6 @@ public class StudentController {
         return studentService.getStudentById(id);
     }
 
-    @Operation(summary = "Delete Student", description = "Delete a student by their ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Student deleted successfully"),
-            @ApiResponse(responseCode = "404", description = "Student not found")
-    })
-    @DeleteMapping("/{id}")
-    public void deleteStudent(
-            @Parameter(description = "UUID of the student to delete", required = true)
-            @PathVariable UUID id) {
-        studentService.deleteStudent(id);
-    }
     @Operation(summary = "Update Student", description = "Update an existing student's information")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Student updated successfully"),
@@ -79,4 +67,15 @@ public class StudentController {
         return studentService.updateStudent(id, updatedStudent);
     }
 
+    @Operation(summary = "Delete Student", description = "Delete a student by their ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Student deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "Student not found")
+    })
+    @DeleteMapping("/{id}")
+    public void deleteStudent(
+            @Parameter(description = "UUID of the student to delete", required = true)
+            @PathVariable UUID id) {
+        studentService.deleteStudent(id);
+    }
 }

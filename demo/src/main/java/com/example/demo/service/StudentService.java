@@ -1,4 +1,5 @@
 package com.example.demo.service;
+
 import com.example.demo.entity.Student;
 import com.example.demo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import java.util.UUID;
 
 @Service
 public class StudentService {
-
     @Autowired
     private StudentRepository studentRepository;
 
@@ -29,6 +29,7 @@ public class StudentService {
     public void deleteStudent(UUID id) {
         studentRepository.deleteById(id);
     }
+
     public Student updateStudent(UUID id, Student updatedStudent) {
         return studentRepository.findById(id)
                 .map(student -> {
@@ -39,5 +40,4 @@ public class StudentService {
                 })
                 .orElseThrow(() -> new ResourceNotFoundException("Student not found with id " + id));
     }
-
 }
