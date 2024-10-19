@@ -2,7 +2,7 @@ package com.example.demo;
 
 import com.example.demo.entity.Book;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class DemoApplicationTests {
+public class BookControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -32,35 +32,34 @@ public class DemoApplicationTests {
     @Test
     public void testCreateBook() throws Exception {
         // Создаем объект книги для теста
-        Book book = new Book("Java Book", "Author", "123456789", true);
-        String bookJson = objectMapper.writeValueAsString(book);
+        String bookJson = objectMapper.writeValueAsString(new Book("Effective Java", "Joshua Bloch", "9780134685991", true));
 
         mockMvc.perform(post("/api/books")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(bookJson))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title").value("Java Book"))
-                .andExpect(jsonPath("$.author").value("Author"));
+                .andExpect(jsonPath("$.title").value("Effective Java"))
+                .andExpect(jsonPath("$.author").value("Joshua Bloch"));
     }
 
     @Test
     public void testGetBookById() throws Exception {
+        // Пример UUID книги
         String bookId = "some-uuid-id";
 
         mockMvc.perform(get("/api/books/" + bookId))
-                .andExpect(status().isNotFound()); // Предполагается, что книга не существует
+                .andExpect(status().isNotFound());
     }
 
     @Test
     public void testUpdateBook() throws Exception {
         String bookId = "some-uuid-id";
-        Book updatedBook = new Book("Updated Book", "Updated Author", "987654321", false);
-        String updatedBookJson = objectMapper.writeValueAsString(updatedBook);
+        String updatedBookJson = objectMapper.writeValueAsString(new Book("Updated Title", "Updated Author", "9780134685991", true));
 
         mockMvc.perform(put("/api/books/" + bookId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(updatedBookJson))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound()); // В данном примере id может не существовать, поэтому тестирует 404
     }
 
     @Test

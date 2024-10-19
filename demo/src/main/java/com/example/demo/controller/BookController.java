@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Book;
 import com.example.demo.service.BookService;
+import com.example.demo.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +12,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
+
     @Autowired
     private BookService bookService;
 
@@ -47,5 +48,10 @@ public class BookController {
     public ResponseEntity<Void> deleteBook(@PathVariable UUID id) {
         bookService.deleteBook(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public List<Book> searchBooks(@RequestParam String keyword) {
+        return bookService.searchBooks(keyword);
     }
 }
