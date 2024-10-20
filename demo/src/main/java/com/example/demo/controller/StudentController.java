@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/students")
+@PreAuthorize("hasRole('STUDENT')")
 @Tag(name = "Student Controller", description = "CRUD operations for Students")
 public class StudentController {
 
@@ -63,7 +65,7 @@ public class StudentController {
     @GetMapping("/{id}")
     public Student getStudentById(
             @Parameter(description = "UUID of the student to retrieve", required = true)
-            @PathVariable UUID id) {
+            @PathVariable Long id) {
         return studentService.getStudentById(id);
     }
 
@@ -75,7 +77,7 @@ public class StudentController {
     @DeleteMapping("/{id}")
     public void deleteStudent(
             @Parameter(description = "UUID of the student to delete", required = true)
-            @PathVariable UUID id) {
+            @PathVariable Long id) {
         studentService.deleteStudent(id);
     }
 }
